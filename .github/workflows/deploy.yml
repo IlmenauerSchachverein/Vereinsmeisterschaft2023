@@ -16,12 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: "latest"
-          extended: true
-
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
@@ -32,14 +26,8 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Hugo Dependencies
-        run: hugo mod get
-
-      - name: Build Hugo
-        run: hugo
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: .
